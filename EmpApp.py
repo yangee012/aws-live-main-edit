@@ -34,7 +34,7 @@ def home():
 def toAddEmp():
     return render_template('AddEmp.html')
 
-@app.route("/toattendancec", methods=['GET', 'POST'])
+@app.route("/toattendance", methods=['GET', 'POST'])
 def toAttend():
     return render_template('Attendance.html')
 
