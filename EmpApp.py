@@ -81,7 +81,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name, id=emp_id, fname=first_name, lname=last_name, interest=pri_skill, location=location, image_url=object_url)
+    return render_template('AddEmpOutput.html', name=emp_name)
 
 # @app.route("/fetchdata", methods=['GET'])
 # def employee():
@@ -92,7 +92,10 @@ def AddEmp():
 
 @app.route("/getemp", methods=['POST'])
 def getEmp():
-    return render_template('GetEmpOutput.html', name=emp_name, id=emp_id, fname=first_name, lname=last_name, interest=pri_skill, location=location, image_url=object_url)
+    cur = db_conn.cursor()
+    cur.execute("SELECT * FROM employee")
+    data = cur.fetchall()
+    return render_template('GetEmpOutput.html', data=data)
 
 
 
