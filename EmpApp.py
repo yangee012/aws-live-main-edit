@@ -95,7 +95,7 @@ def getEmp():
     # cur = db_conn.cursor()
     # cur.execute("SELECT * FROM employee")
     # data = cur.fetchall()
-    return render_template('GetEmpOutput.html', data=data)
+    return render_template('GetEmpOutput.html')
 
 
 
