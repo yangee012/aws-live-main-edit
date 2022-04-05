@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Added Employee Information</title>
+	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
+	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+</head>
+<body>
+	<div class="topnav">
+		<a class="home">Employee Database Management System</a>
+		
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">GET EMPLOYEE INFORMATION</button>
+		</form>
+		<form action="/toaddemp" autocomplete="on" method = "POST">
+			<button type="submit">ADD EMPLOYEE</button>
+		</form>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">Attendance</button>
+		</form>
+	</div>
+
+	<center>
+		<div bgcolor="lightgrey"><br><br><br>
+			<h1>Welcome To Employee Management System</h1><br><br><br>
+			<br><br><br>
+		</div>
+	</center>
+
+	
+</body>
+</head>
+</html>
