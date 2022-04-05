@@ -50,11 +50,11 @@
 						</tr>
 						{% for item in data %}
 						<tr>
-							<td>{{item.emp_id}}</td>
-							<td>{{item.first_name}}</td>
-							<td>{{item.last_name}}</td>
-							<td>{{item.pri_skill}}</td>
-							<td>{{item.location}}</td>
+							<td>{{item[0]}}</td>
+							<td>{{item[1]}}</td>
+							<td>{{item[2]}}</td>
+							<td>{{item[3]}}</td>
+							<td>{{item[4]}}</td>
 						</tr>
 						{% endfor %}
 					</table>
