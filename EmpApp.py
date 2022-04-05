@@ -23,12 +23,15 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    return render_template('HomePage.html')
+
+# @app.route("/about", methods=['POST'])
+# def about():
+#     return render_template('www.intellipaat.com')
+
+@app.route("/hometoaddemp", methods=['GET', 'POST'])
+def home():
     return render_template('AddEmp.html')
-
-
-@app.route("/about", methods=['POST'])
-def about():
-    return render_template('www.intellipaat.com')
 
 
 @app.route("/addemp", methods=['POST'])
@@ -79,6 +82,12 @@ def AddEmp():
 
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
+
+
+@app.route("/getemp", methods=['POST'])
+def about():
+    return render_template('GetEmpOutput.html', name=emp_name)
+
 
 
 if __name__ == '__main__':
