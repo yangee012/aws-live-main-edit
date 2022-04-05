@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Searched Employee Information</title>
+	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
+</head>
+<body>
+	<div class="topnav">
+		<a class="home">Employee Database</a>
+		<button type="submit" formaction="http://3.134.115.108:80/" method="GET">GO TO UPDATE DATABASE PAGE</button>
+	</div>
+	<center>
+		<br><br><br>
+		<h1>Employee Information</h1><br><br><br>
+		<body bgcolor="lightgrey">
+			<form>
+				<p>Employee ID:<br> {{ id }} </p><br>
+				<p>First Name:<br> {{ fname }} </p><br>
+				<p>Last Name:<br> {{ lname }} </p><br>
+				<p>Primary Interest:<br> {{ interest }} </p><br>
+				<p>Location:<br> {{ location }} </p><br>
+				<p>Image URL: <br> {{ image_url }} </p><br>
+				<div style="padding-right: 45pt;">						
+					<button class="reset-button" type="submit" formaction="http://3.134.115.108:80/getemp">RESET</button><br><br>
+				</div>
+			</form>
+		</body>
+	</center>
+</body>
+
+</html>
