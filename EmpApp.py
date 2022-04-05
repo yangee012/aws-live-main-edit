@@ -29,8 +29,8 @@ def home():
 # def about():
 #     return render_template('www.intellipaat.com')
 
-@app.route("/hometoaddemp", methods=['GET', 'POST'])
-def hometoAddEmp():
+@app.route("/toaddemp", methods=['GET', 'POST'])
+def toAddEmp():
     return render_template('AddEmp.html')
 
 
@@ -81,12 +81,18 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', name=emp_name, id=emp_id, fname=first_name, lname=last_name, interest=pri_skill, location=location, image_url=object_url)
 
+# @app.route("/fetchdata", methods=['GET'])
+# def employee():
+#     # insert_sql = "select * from employee"
+#     # cursor = db_conn.cursor()
+#     # cursor.fetchall()
+#     return render_template('GetEmpOutput.html', name=emp_name)
 
 @app.route("/getemp", methods=['POST'])
-def about():
-    return render_template('GetEmpOutput.html', name=emp_name)
+def getEmp():
+    return render_template('GetEmpOutput.html', name=emp_name, id=emp_id, fname=first_name, lname=last_name, interest=pri_skill, location=location, image_url=object_url)
 
 
 
