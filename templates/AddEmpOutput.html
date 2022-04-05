@@ -7,7 +7,10 @@
 <body>
 	<div class="topnav">
 		<a class="home">Employee Database</a>
-		<button type="submit" formaction="/getemp">GET EMPLOYEE INFORMATION</button>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit" >GET EMPLOYEE INFORMATION</button><br><br>
+		</form>
+		
 	</div>
 
 	<center>
@@ -16,7 +19,7 @@
 			<p style="color: grey;">The following employee's information has been added to the database</p><br><br>
 			<p style="color: #333;">{{ name }}</p><br><br>
 			<br><br><br>
-			<form action="/hometoaddemp" autocomplete="on" method = "GET">
+			<form action="/toaddemp" autocomplete="on" method = "GET">
 				<button type="submit" >GO BACK TO ADD EMPLOYEE INFORMATION</button><br><br>
 			</form>
 		</div>
