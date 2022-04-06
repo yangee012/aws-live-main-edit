@@ -65,9 +65,12 @@ def AddEmp():
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
         
-        cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
-        cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
-        
+        # cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
+        # cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
+
+        cursor.execute ("update payroll A, employee B set hourly_rate = 16 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
+        cursor.execute ("update payroll A, employee B set hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
+
         # if pri_skill == "Cloud Computing":
         #     cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
         #     cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
