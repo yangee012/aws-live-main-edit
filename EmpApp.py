@@ -51,12 +51,18 @@ def AddEmp():
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s)"
     cursor = db_conn.cursor()
 
+
+    hourly_rate = 0
+    hours_worked = 0
+    leave_day = 0
+    monthly_salary = 0
+
     if emp_image_file.filename == "":
         return "Please select a file"
 
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
-        cursor.execute(insert_payroll, (emp_id, first_name, last_name, None, None, None, None))
+        cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
         
 
         if pri_skill == "Cloud Computing":
