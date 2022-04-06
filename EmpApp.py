@@ -56,6 +56,7 @@ def AddEmp():
     hours_worked = 0
     leave_day = 0
     monthly_salary = 0
+    
 
     if emp_image_file.filename == "":
         return "Please select a file"
@@ -64,12 +65,14 @@ def AddEmp():
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
         
-        emp_id2 = emp_id
-        if pri_skill == "Cloud Computing":
-            # cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
-            # cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
-            cursor.execute ("update payroll set hourly_rate = 16 where emp_id = emp_id2")
-            cursor.execute ("update payroll set hours_worked = 8 where emp_id = emp_id2")
+        cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
+        cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
+        
+        # if pri_skill == "Cloud Computing":
+        #     cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
+        #     cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
+        #     cursor.execute ("update payroll set hourly_rate = 16 where emp_id = emp_id")
+        #     cursor.execute ("update payroll set hours_worked = 8 where emp_id = emp_id")
         
         cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
