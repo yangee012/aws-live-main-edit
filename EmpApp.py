@@ -38,6 +38,26 @@ def toAddEmp():
 def toAttend():
     return render_template('Attendance.html')
 
+
+@app.route("/addattendance", methods=['POST'])
+def addAttend():
+    duty_id = request.form['duty_id']
+    emp_id = request.form['emp_id']
+    date = request.form['date']
+    duration = request.form['duration']
+
+    insert_attendance = "INSERT INTO duty VALUES (%s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    cursor.execute(insert_attendance, (duty_id, emp_id, date, duration))
+    db_conn.commit()
+
+    return render_template('AttendanceOutput.html', id=emp_id, date=date)  
+
+
+
+
+
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
     emp_id = request.form['emp_id']
@@ -50,7 +70,7 @@ def AddEmp():
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-
+    cursor.close()
     
     hourly_rate = 0
     hours_worked = 0
@@ -65,17 +85,8 @@ def AddEmp():
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
         
-        # cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
-        # cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
-
         cursor.execute ("update payroll A, employee B set hourly_rate = 16 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
         cursor.execute ("update payroll A, employee B set hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
-
-        # if pri_skill == "Cloud Computing":
-        #     cursor.execute ("update payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
-        #     cursor.execute ("update payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
-        #     cursor.execute ("update payroll set hourly_rate = 16 where emp_id = emp_id")
-        #     cursor.execute ("update payroll set hours_worked = 8 where emp_id = emp_id")
         
         cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
