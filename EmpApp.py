@@ -71,7 +71,7 @@ def AddEmp():
             cursor.execute ("update payroll set hourly_rate = 16")
             cursor.execute ("update payroll set hours_worked = 8")
         
-        cursor.execute ("update table payroll set monthly_salary = (hours_worked * hourly_rate)")
+        cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
