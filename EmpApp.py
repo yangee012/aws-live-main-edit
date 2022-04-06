@@ -48,7 +48,7 @@ def AddEmp():
     emp_image_file = request.files['emp_image_file']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
-    insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %d, %d, %d, %d)"
+    insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
 
