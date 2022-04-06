@@ -19,7 +19,7 @@ db_conn = connections.Connection(
 )
 output = {}
 table = 'employee'
-
+table = 'payroll'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -48,14 +48,23 @@ def AddEmp():
     emp_image_file = request.files['emp_image_file']
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s)"
     cursor = db_conn.cursor()
 
     if emp_image_file.filename == "":
         return "Please select a file"
 
     try:
-
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+        cursor.execute(insert_sql, (emp_id, first_name, last_name))
+        
+
+        if pri_skill == "Cloud Computing":
+            cursor.execute ("update table payroll set hourly_rate = 16 where (select * from employee where pri_skill = 'Cloud Computing')")
+            cursor.execute ("update table payroll set hours_worked = 8 where (select * from employee where pri_skill = 'Cloud Computing')")
+        
+        cursor.execute ("update table payroll set monthly_salary = (hours_worked * hourly_rate)")
+        
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
         # Uplaod image file in S3 #
