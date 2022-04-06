@@ -56,7 +56,7 @@ def AddEmp():
 
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
-        cursor.execute(insert_payroll, (emp_id, first_name, last_name, NULL, NULL, NULL, NULL))
+        cursor.execute(insert_payroll, (emp_id, first_name, last_name, None, None, None, None))
         
 
         if pri_skill == "Cloud Computing":
