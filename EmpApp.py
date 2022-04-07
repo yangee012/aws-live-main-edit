@@ -176,9 +176,11 @@ def show_image(bucket):
             if emp_id in presigned_url:
                 public_urls.append(presigned_url)
     
+            print("[INFO]: The content inside show images: ", presigned_url)
     except Exception as e:
         pass
-    print("[INFO]: The content inside show images: ", presigned_url)
+
+    
     return public_urls
 
 @app.route("/getemp", methods=['GET'])
