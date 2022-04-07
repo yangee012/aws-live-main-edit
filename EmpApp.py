@@ -183,7 +183,7 @@ def fetchEmp():
 
 
 
-@app.route("/getemp", methods=['GET'])
+@app.route("/getemp", methods=['GET','POST'])
 def getEmp():
     cur = db_conn.cursor()
     cur.execute("SELECT * FROM employee")
@@ -198,6 +198,7 @@ def deleteEmp():
     delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
     cur.execute(delete_emp_sql, (emp_id))
     db_conn.commit()
+    data = cur.fetchall()
 
     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
     s3_client = boto3.client('s3')
