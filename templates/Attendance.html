@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Add Employee Information</title>
-    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
-	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+    <!-- <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
 </head>
 <body>
 	<div class="topnav">
@@ -27,11 +27,12 @@
 	</div>
 
 	
-
+	
 	<center>
 		<br><br><br><h1>EMPLOYEE ATTENDANCE</h1><br><br>
+		
 	</center>
-
+	
 	<div class="form-part"><br><br>
 		
 		<form action="/addattendance" autocomplete="on" method = "POST" enctype="multipart/form-data">
@@ -42,7 +43,11 @@
 
 			<button type="submit">UPDATE DATABASE</button>
 		</form>
+		<form action="/viewattendance" autocomplete="on" method = "POST"><br><br>
+			<button type="submit">ATTENDANCE INFORMATION</button>
+		</form>
 	</div>
+	
 		
 	
 </body>

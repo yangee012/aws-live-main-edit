@@ -57,7 +57,12 @@ def addAttend():
 
     return render_template('AttendanceOutput.html', id=emp_id, date=date)  
 
-
+@app.route("/viewattendance", methods=['GET'])
+def getAllAttend():
+    cur = db_conn.cursor()
+    cur.execute("SELECT * FROM duty")
+    data = cur.fetchall()
+    return render_template('AttendanceAllOutput.html', data=data)
 
 
 
