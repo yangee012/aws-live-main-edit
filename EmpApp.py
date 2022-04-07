@@ -178,6 +178,7 @@ def show_image(bucket):
     
     except Exception as e:
         pass
+    print("[INFO]: The content inside show images: ", presigned_url)
     return public_urls
 
 @app.route("/getemp", methods=['GET'])
