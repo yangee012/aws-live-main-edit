@@ -203,7 +203,7 @@ def deleteEmp():
     s3_client = boto3.client('s3')
     
     try:
-        s3_client.delete_object(Bucket=customBucket, Key=emp_image_file_name_in_s3)
+        s3_client.delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
         return render_template('DeleteEmpOutput.html', id = emp_id)
     except Exception as e:
         return render_template('ErrorPage.html', errorMsg="Delete Employee unsuccess")
