@@ -34,21 +34,20 @@
 		<h1 style="color: rgb(0, 124, 143);">SEARCH FOR EMPLOYEE INFORMATION</h1><br><br><br>
 		
 		<body bgcolor="lightgrey">
+			<p style="color: grey">To search for the employee's information, please enter his/her Employee ID.</p><br><br>
 
+			<p>Employee ID:</p><br> <input style="height:22pt; font-size:16pt;" type="number" name="emp_id" autofocus size="40"><br><br><br><br>
+				
 			<form action="/fetchemp" autocomplete="on" method="POST">
 
-				<p style="color: grey">To search for the employee's information, please enter his/her Employee ID.</p><br><br>
-
-				<p>Employee ID:</p><br> <input style="height:22pt; font-size:16pt;" type="number" name="emp_id" autofocus size="40"><br><br><br><br>
 				<div style="padding-right: 45pt;">
 					<button class="fetch-button" type="submit">FETCH INFO</button><br><br><br><br>
 					<button class="reset-button" type="reset">RESET</button>
 				</div>
-				<form action="/deleteemp" autocomplete="on" method="POST">
-					<button type="submit">DELETE EMPLOYEE</button>
-				</form>
 			</form>
-			
+			<form action="/deleteemp" autocomplete="on" method="POST">
+				<button type="submit">DELETE EMPLOYEE</button>
+			</form>
 			
 		</body>
 	</center>
