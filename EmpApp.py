@@ -46,6 +46,10 @@ def toPayroll():
 def toDeleteEmp():
     return render_template('DeleteEmp.html')
 
+@app.route("/tomanageemp", methods=['GET', 'POST'])
+def toManageEmp():
+    return render_template('ManageEmployee.html')
+
 @app.route("/addattendance", methods=['POST'])
 def addAttend():
     duty_id = request.form['duty_id']
