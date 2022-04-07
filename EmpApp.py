@@ -42,25 +42,6 @@ def toAttend():
 def toPayroll():
     return render_template('Payroll.html')
 
-@app.route("/addattendance", methods=['POST'])
-def addAttend():
-    duty_id = request.form['duty_id']
-    emp_id = request.form['emp_id']
-    date = request.form['date']
-    duration = request.form['duration']
-
-    insert_attendance = "INSERT INTO duty VALUES (%s, %s, %s, %s)"
-    cursor = db_conn.cursor()
-
-    cursor.execute(insert_attendance, (duty_id, emp_id, date, duration))
-    db_conn.commit()
-
-    return render_template('AttendanceOutput.html', id=emp_id, date=date)  
-
-
-
-
-
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
     emp_id = request.form['emp_id']
@@ -73,25 +54,21 @@ def AddEmp():
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
+
     
     hourly_rate = 0
     hours_worked = 0
     leave_day = 0
     monthly_salary = 0
-    
+    month = 0
 
     if emp_image_file.filename == "":
         return "Please select a file"
 
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
-        cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
-        
-        cursor.execute ("update payroll A, employee B set hourly_rate = 16 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
-        cursor.execute ("update payroll A, employee B set hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
-        
-        cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
-        
+        cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary, month))
+
         #if statements to update hours_worked and hourly_rate in payroll table
         cursor.execute ("update payroll A, employee B set hourly_rate = 10, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
         cursor.execute ("update payroll A, employee B set hourly_rate = 15, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'R Programming'")
@@ -101,9 +78,12 @@ def AddEmp():
         cursor.execute ("update payroll A, employee B set hourly_rate = 35, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'SQL'")
         cursor.execute ("update payroll A, employee B set hourly_rate = 40, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Machine Learning'")
 
+    
         #update monthly salary in payroll table
         cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
+        #insert month
+        cursor.execute("update payroll A set month = MONTHNAME(CURDATE())")
 
         db_conn.commit()
         emp_name = "" + first_name + " " + last_name
@@ -150,7 +130,6 @@ def getEmp():
     data = cur.fetchall()
     return render_template('GetEmpOutput.html', data=data)
 
-
 @app.route("/getpayroll", methods=['POST', 'GET'])
 def getPayroll():
     emp_id = request.form['emp_id']
@@ -160,6 +139,7 @@ def getPayroll():
     data = cur.fetchall()
 
     return render_template('PayrollOutput.html', data=data)
+
 
 
 if __name__ == '__main__':
