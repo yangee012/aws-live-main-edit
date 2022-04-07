@@ -38,10 +38,10 @@
 			<form>
 				{% for item in data %}
 				<p>Employee ID:<br> {{ item[0] }} </p><br>
-				<p>First Name:<br> {{ itemp[1] }} </p><br>
-				<p>Last Name:<br> {{ itemp[2] }} </p><br>
-				<p>Primary Interest:<br> {{ itemp[3] }} </p><br>
-				<p>Location:<br> {{ itemp[4] }} </p><br>
+				<p>First Name:<br> {{ item[1] }} </p><br>
+				<p>Last Name:<br> {{ item[2] }} </p><br>
+				<p>Primary Interest:<br> {{ item[3] }} </p><br>
+				<p>Location:<br> {{ item[4] }} </p><br>
 				<!-- <p>Image URL: <br> {{ image_url }} </p><br> -->
 				{% endfor %}
 			</form>
