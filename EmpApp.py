@@ -43,7 +43,7 @@ def toPayroll():
     return render_template('Payroll.html')
 
 @app.route("/todeleteEmp", methods=['GET', 'POST'])
-def toPayroll():
+def toDeleteEmp():
     return render_template('DeleteEmp.html')
 
 @app.route("/addattendance", methods=['POST'])
