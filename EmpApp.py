@@ -79,7 +79,7 @@ def AddEmp():
     location = request.form['location']
     emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
     
@@ -164,7 +164,7 @@ def show_image(bucket):
             
             if emp_id in presigned_url:
                 public_urls.append(presigned_url)
-                
+
     except Exception as e:
         pass
     # print("[INFO] : The contents inside show_image = ", public_urls)
