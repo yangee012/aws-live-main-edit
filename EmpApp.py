@@ -155,16 +155,22 @@ def gofetchEmp():
 def show_image(bucket):
     s3_client = boto3.client('s3')
     public_urls = []
+
+    emp_id = request.form['emp_id']
+
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            public_urls.append(presigned_url)
+            
+            if emp_id in presigned_url:
+                public_urls.append(presigned_url)
+                
     except Exception as e:
         pass
     # print("[INFO] : The contents inside show_image = ", public_urls)
     return public_urls
 
-@app.route("/fetchemp", methods=['POST'])
+@app.route("/fetchemp", methods=['GET','POST'])
 def fetchEmp():
     emp_id = request.form['emp_id']
     cur = db_conn.cursor()
