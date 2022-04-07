@@ -190,7 +190,7 @@ def getEmp():
     data = cur.fetchall()
     return render_template('GetEmpOutput.html', data=data)
 
-delete employee
+#delete employee
 @app.route("/deleteemp", methods=['POST'])
 def deleteEmp():
     emp_id = request.form['emp_id']
