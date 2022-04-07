@@ -155,21 +155,13 @@ def gofetchEmp():
 def show_image(bucket):
     s3_client = boto3.client('s3')
     public_urls = []
-
-    # emp_id = request.form['emp_id']
-
     try:
-        for item in s3.client.list_objects(Bucket=bucket)['Contents']:
-            
+        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            # if emp_id in presigned_url:
-            #     public_urls.append(presigned_url)
-
             public_urls.append(presigned_url)
-            
     except Exception as e:
         pass
-    #print("[INFO]: The content inside show images: ", presigned_url)
+    # print("[INFO] : The contents inside show_image = ", public_urls)
     return public_urls
 
 @app.route("/fetchemp", methods=['POST'])
@@ -178,10 +170,10 @@ def fetchEmp():
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
-    image_url = show_image(custombucket)
+    contents = show_image(custombucket)
     data = cur.fetchall()
 
-    return render_template('GetOneEmp.html', data=data, image_url=image_url)
+    return render_template('GetOneEmp.html', data=data, contents=contents)
 
 
 
