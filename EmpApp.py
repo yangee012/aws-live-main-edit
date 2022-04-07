@@ -165,7 +165,7 @@ def show_image(bucket):
             # if emp_id in presigned_url:
             #     public_urls.append(presigned_url)
 
-            public_urls.append(presigned_url)
+            public_urls.append("https://limyangee-employee.s3.amazonaws.com/upload/1_2_2048x.jpg")
             print("[INFO]: The content inside show images: ", presigned_url)
     except Exception as e:
         pass
