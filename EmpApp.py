@@ -50,7 +50,8 @@ def addAttend():
     duration = request.form['duration']
 
     if duty_id == "" or emp_id == "" or date == "" or duration == "":
-        return "Please select a file"
+        errorMsg = "Please fill in all the fields"
+        return render_template('ErrorPage.html', errorMsg=data)
 
     insert_attendance = "INSERT INTO duty VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
