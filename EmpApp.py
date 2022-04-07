@@ -73,7 +73,6 @@ def AddEmp():
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-    cursor.close()
     
     hourly_rate = 0
     hours_worked = 0
