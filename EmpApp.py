@@ -191,25 +191,34 @@ def getEmp():
     return render_template('GetEmpOutput.html', data=data)
 
 # delete employee
-@app.route("/deleteemp", methods=['POST'])
+# @app.route("/deleteemp", methods=['POST'])
+# def deleteEmp():
+#     emp_id = request.form['emp_id']
+#     cur = db_conn.cursor()
+#     delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
+#     cur.execute(delete_emp_sql, (emp_id))
+#     db_conn.commit()
+#     # data = cur.fetchall()
+
+#     emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+#     s3_client = boto3.client('s3')
+    
+#     try:
+#         s3_client.delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
+#         return render_template('DeleteEmpOutput.html', id = emp_id)
+#     except Exception as e:
+#         return render_template('ErrorPage.html', errorMsg="Delete Employee unsuccess")
+
+
+@app.route("/deleteemp", methods=['POST', 'GET'])
 def deleteEmp():
     emp_id = request.form['emp_id']
     cur = db_conn.cursor()
-    # delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
-    delete_emp_sql = "SELECT * FROM payroll where emp_id = %s"
-    cur.execute(delete_emp_sql, (emp_id))
-    db_conn.commit()
-    # data = cur.fetchall()
+    select_sql = "SELECT * FROM payroll where emp_id = (%s)"
+    cur.execute(select_sql, (emp_id))
+    data = cur.fetchall()
 
-    # emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
-    # s3_client = boto3.client('s3')
-    
-    # try:
-    #     s3_client.delete_object(Bucket=custombucket, Key=emp_image_file_name_in_s3)
-    #     return render_template('DeleteEmpOutput.html', id = emp_id)
-    # except Exception as e:
-    #     return render_template('ErrorPage.html', errorMsg="Delete Employee unsuccess")
-    return render_template('DeleteEmpOutput.html', id = emp_id)
+    return render_template('PayrollOutput.html', data=data)
 
 # edit employee
 
