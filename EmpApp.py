@@ -164,8 +164,9 @@ def show_image(bucket):
             Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
             
             # if emp_id in presigned_url:
+            #     public_urls.append(presigned_url)
+
             public_urls.append(presigned_url)
-    
             print("[INFO]: The content inside show images: ", presigned_url)
     except Exception as e:
         pass
