@@ -79,7 +79,7 @@ def AddEmp():
     location = request.form['location']
     emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
     
@@ -157,9 +157,10 @@ def fetchEmp():
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
+    image_url = show_image(custombucket)
     data = cur.fetchall()
 
-    return render_template('GetOneEmp.html', data=data)
+    return render_template('GetOneEmp.html', data=data, image_url=image_url)
 
 @app.route("/getemp", methods=['GET'])
 def getEmp():
