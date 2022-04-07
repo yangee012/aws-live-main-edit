@@ -191,7 +191,7 @@ def getEmp():
     return render_template('GetEmpOutput.html', data=data)
 
 # delete employee
-@app.route("/deleteemp", methods=['GET', 'POST'])
+@app.route("/deleteemp", methods=['GET'])
 def deleteEmp():
     emp_id = request.form['emp_id']
     cur = db_conn.cursor()
