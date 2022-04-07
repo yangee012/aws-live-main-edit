@@ -10,11 +10,21 @@
 <body>
 	<div class="topnav">
 		<a class="home">Employee Database</a>
-		<form action="/toaddemp" autocomplete="on" method = "GET">
-			<button type="submit" >GO TO ADD DATABASE PAGE</button>
+
+		<form action="/" autocomplete="on" method = "GET">
+			<button type="submit">HOME</button>
+		</form>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
 		</form>
 		<form action="/toattendance" autocomplete="on" method = "POST">
-			<button type="submit">Attendance</button>
+			<button type="submit">ATTENDANCE</button>
+		</form>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
+		</form>
+		<form action="/toaddemp" autocomplete="on" method = "POST">
+			<button type="submit">ADD EMPLOYEE</button>
 		</form>
 	</div>
 	<form action="/" autocomplete="on" method = "GET">
