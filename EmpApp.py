@@ -83,7 +83,7 @@ def AddEmp():
         cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
         #insert month
-        update_month_sql = "update payroll set month = MONTHNAME(CURDATE()) where emp_id = (%s)")
+        update_month_sql = "update payroll set month = MONTHNAME(CURDATE()) where emp_id = (%s)"
         cursor.execute(update_month_sql, (emp_id))
 
         db_conn.commit()
