@@ -162,6 +162,24 @@ def fetchEmp():
 
     return render_template('GetOneEmp.html', data=data, image_url=image_url)
 
+def show_image(bucket):
+    s3_client = boto3.client('s3')
+    public_urls = []
+
+    emp_id = request.form['emp_id']
+
+    try:
+        for item in s3.client.list_objects(Bucket=bucket)['Contents']:
+            presigned_url = s3.client.generate_presigned_url('get_object',
+            Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
+            
+            if emp_id in presigned_url:
+                public_urls.append(presigned_url)
+    
+    except Exception as e:
+        pass
+    return public_urls
+
 @app.route("/getemp", methods=['GET'])
 def getEmp():
     cur = db_conn.cursor()
