@@ -160,9 +160,8 @@ def show_image(bucket):
 
     try:
         for item in s3.client.list_objects(Bucket=bucket)['Contents']:
-            presigned_url = s3.client.generate_presigned_url('get_object',
-            Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
             
+            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
             # if emp_id in presigned_url:
             #     public_urls.append(presigned_url)
 
