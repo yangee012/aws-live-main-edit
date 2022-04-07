@@ -148,7 +148,7 @@ def AddEmp():
     return render_template('AddEmpOutput.html', name=emp_name)
 
 @app.route("/tofetchemp", methods=['POST'])
-def fetchEmp():
+def gofetchEmp():
     return render_template('GetEmp.html', data=data)
 
 @app.route("/fetchemp", methods=['POST'])
