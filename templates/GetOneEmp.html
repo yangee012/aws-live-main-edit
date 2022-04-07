@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Added Employee Information</title>
-	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
+	<title>Searched Employee Information</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
 	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
 </head>
+
 <body>
 	<div class="topnav">
-		<a class="home">Employee Database Management System</a>
-		
+		<a class="home">Employee Database</a>
+
 		<form action="/" autocomplete="on" method = "GET">
 			<button type="submit">HOME</button>
 		</form>
@@ -28,15 +30,23 @@
 			<button type="submit">SEARCH EMPLOYEE</button>
 		</form>
 	</div>
-
-	<center>
-		<div bgcolor="lightgrey"><br><br><br>
-			<h1>Welcome To Employee Management System</h1><br><br><br>
-			<br><br><br>
-		</div>
-	</center>
-
 	
+	<center>
+		<br><br><br>
+		<h1>Employee Information</h1><br><br><br>
+		<body bgcolor="lightgrey">
+			<form>
+				{% for item in data %}
+				<p>Employee ID:<br> {{ item[0] }} </p><br>
+				<p>First Name:<br> {{ itemp[1] }} </p><br>
+				<p>Last Name:<br> {{ itemp[2] }} </p><br>
+				<p>Primary Interest:<br> {{ itemp[3] }} </p><br>
+				<p>Location:<br> {{ itemp[4] }} </p><br>
+				<!-- <p>Image URL: <br> {{ image_url }} </p><br> -->
+				{% endfor %}
+			</form>
+		</body>
+	</center>
 </body>
-</head>
+
 </html>

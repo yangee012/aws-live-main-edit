@@ -147,12 +147,15 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-# @app.route("/fetchdata", methods=['GET'])
-# def employee():
-#     # insert_sql = "select * from employee"
-#     # cursor = db_conn.cursor()
-#     # cursor.fetchall()
-#     return render_template('GetEmpOutput.html', name=emp_name)
+@app.route("/fetchemp", methods=['GET'])
+def fetchEmp():
+    emp_id = request.form['emp_id']
+    cur = db_conn.cursor()
+    select_sql = "SELECT * FROM employee where emp_id = (%s)"
+    cur.execute(select_sql, (emp_id))
+    data = cur.fetchall()
+
+    return render_template('GetOneEmp.html', data=data)
 
 @app.route("/getemp", methods=['GET'])
 def getEmp():

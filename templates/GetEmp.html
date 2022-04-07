@@ -7,7 +7,25 @@
 <body>
 	<div class="topnav">
 		<a class="home">Employee Database</a>
-		<button type="submit" formaction="http://3.134.115.108:80/" method="GET">GO TO UPDATE DATABASE PAGE</button>
+		
+		<form action="/" autocomplete="on" method = "GET">
+			<button type="submit">HOME</button>
+		</form>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
+		</form>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">ATTENDANCE</button>
+		</form>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
+		</form>
+		<form action="/toaddemp" autocomplete="on" method = "POST">
+			<button type="submit">ADD EMPLOYEE</button>
+		</form>
+		<form action="/fetchemp" autocomplete="on" method = "POST">
+			<button type="submit">SEARCH EMPLOYEE</button>
+		</form>
 	</div>
 	
 	<center>
@@ -16,7 +34,7 @@
 		
 		<body bgcolor="lightgrey">
 
-			<form action="/fetchdata" autocomplete="on" method="POST">
+			<form action="/fetchemp" autocomplete="on" method="POST">
 
 				<p style="color: grey">To search for the employee's information, please enter his/her Employee ID.</p><br><br>
 
