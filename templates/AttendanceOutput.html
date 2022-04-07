@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Added Employee Information</title>
-	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
-	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+	<!-- <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
 </head>
 <body>
 	<div class="topnav">
@@ -35,6 +35,9 @@
 			<br><br><br>
 			<form action="/toattendance" autocomplete="on" method = "GET">
 				<button type="submit" >GO BACK TO ADD ATTENDANCE INFORMATION</button><br><br>
+			</form>
+			<form action="/viewattendance" autocomplete="on" method = "POST"><br><br>
+				<button type="submit">ATTENDANCE INFORMATION</button>
 			</form>
 		</div>
 	</center>

@@ -3,8 +3,8 @@
 
 <head>
 	<title>Searched Employee Information</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
-	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
 </head>
 
 <body>
@@ -69,7 +69,11 @@
 				</td>
 			</tr>
 		</table>
-	</center>
+		
+	</center><br><br><br><br>
+	<form action="/toattendance" autocomplete="on" method = "GET">
+		<button type="submit" >GO BACK TO ADD ATTENDANCE INFORMATION</button><br><br>
+	</form>
 </body>
 
 </html>

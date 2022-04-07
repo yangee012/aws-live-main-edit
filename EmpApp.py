@@ -49,6 +49,9 @@ def addAttend():
     date = request.form['date']
     duration = request.form['duration']
 
+    if duty_id == "" && emp_id = "" && date = "" && duration = "":
+        return "Please select a file"
+
     insert_attendance = "INSERT INTO duty VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
