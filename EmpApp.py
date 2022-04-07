@@ -42,6 +42,10 @@ def toAttend():
 def toPayroll():
     return render_template('Payroll.html')
 
+@app.route("/todeleteEmp", methods=['GET', 'POST'])
+def toPayroll():
+    return render_template('DeleteEmp.html')
+
 @app.route("/addattendance", methods=['POST'])
 def addAttend():
     duty_id = request.form['duty_id']
@@ -189,6 +193,8 @@ def getEmp():
     cur.execute("SELECT * FROM employee")
     data = cur.fetchall()
     return render_template('GetEmpOutput.html', data=data)
+
+
 
 #delete employee
 @app.route("/deleteemp", methods=['POST'])
