@@ -42,7 +42,8 @@
 				<p>Last Name:<br> {{ item[2] }} </p><br>
 				<p>Primary Interest:<br> {{ item[3] }} </p><br>
 				<p>Location:<br> {{ item[4] }} </p><br>
-				<p>Image URL: <br> {{ image_url }} </p><br>
+				<!-- <p>Image URL: <br> {{ image_url }} </p><br> -->
+				<img src= {{ image_url }} style="width: 250px"><br>
 				{% endfor %}
 			</form>
 		</body>
