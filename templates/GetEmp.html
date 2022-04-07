@@ -3,6 +3,7 @@
 <head>
 	<title>Get Employee Information</title>
 	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
+	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
 </head>
 <body>
 	<div class="topnav">
@@ -44,7 +45,10 @@
 					<button class="reset-button" type="reset">RESET</button>
 				</div>
 			</form>
-
+			
+			<form action="/deleteemp" autocomplete="on" method="POST">
+				<button type="submit">DELETE EMPLOYEE</button>
+			</form>
 		</body>
 	</center>
 </body>
