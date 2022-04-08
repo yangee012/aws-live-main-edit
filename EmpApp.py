@@ -192,13 +192,14 @@ def show_image(bucket):
 
 @app.route("/fetchemp", methods=['GET','POST'])
 def fetchEmp():
+    emp_id = ""
     emp_id = request.form['emp_id']
 
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
         action = "/fetchemp"
-        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action, emp_id=emp_id)
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
@@ -306,10 +307,10 @@ def editEmp():
 
 
 
-@app.route("/getpayroll", methods=['POST', 'GET'])
+@app.route("/getpayroll", methods=['POST'])
 def getPayroll():
     emp_id = request.form['emp_id']
-
+    
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO PAYROLL PAGE"
@@ -318,6 +319,7 @@ def getPayroll():
 
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM payroll where emp_id = (%s)"
+
     cur.execute(select_sql, (emp_id))
     data = cur.fetchall()
 
