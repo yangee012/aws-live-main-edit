@@ -225,7 +225,7 @@ def deleteEmp():
 
 # edit employee
 @app.route("/searcheditEmp", methods=['POST', 'GET'])
-def searcheditEmp()
+def searcheditEmp():
     emp_id = request.form['emp_id']
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
