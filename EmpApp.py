@@ -356,7 +356,7 @@ def searchBenefitEmp():
     if cur.rowcount == 0:
         errorMsg = "The employee ID is not exist"
         buttonMsg = "BACK TO BENEFIT EMPLOYEE PAGE"
-        action = "/tosearcheditEmp"
+        action = "/tosearchbenefitemp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
     
 
