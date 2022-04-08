@@ -93,6 +93,12 @@ def AddEmp():
     location = request.form['location']
     emp_image_file = request.files['emp_image_file']
 
+    if emp_id == "" or first_name == "" or last_name == "" or pri_skill == "" or location == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO ADD EMPLOYEE PAGE"
+        action = "/addemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
@@ -187,6 +193,13 @@ def show_image(bucket):
 @app.route("/fetchemp", methods=['GET','POST'])
 def fetchEmp():
     emp_id = request.form['emp_id']
+
+    if emp_id == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        action = "/fetchemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
@@ -210,6 +223,13 @@ def getEmp():
 @app.route("/deleteemp", methods=['POST'])
 def deleteEmp():
     emp_id = request.form['emp_id']
+
+    if emp_id == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO DELETE EMPLOYEE PAGE"
+        action = "/deleteemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
     cur = db_conn.cursor()
     delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
     cur.execute(delete_emp_sql, (emp_id))
@@ -229,6 +249,13 @@ def deleteEmp():
 @app.route("/searcheditEmp", methods=['POST', 'GET'])
 def searcheditEmp():
     emp_id = request.form['emp_id']
+
+    if emp_id == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        action = "/searcheditEmp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+    
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
@@ -244,6 +271,12 @@ def editEmp():
     last_name = request.form['last_name']
     pri_skill = request.form['pri_skill']
     location = request.form['location']
+
+    if emp_id == "" or first_name == "" or last_name == "" or pri_skill == "" or location == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
+        action = "/editemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
     update_emp_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s where emp_id = %s"
@@ -276,6 +309,13 @@ def editEmp():
 @app.route("/getpayroll", methods=['POST', 'GET'])
 def getPayroll():
     emp_id = request.form['emp_id']
+
+    if emp_id == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO PAYROLL PAGE"
+        action = "/getpayroll"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM payroll where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
