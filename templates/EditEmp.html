@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Add Employee Information</title>
-	<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
-	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+	<!-- <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
 </head>
 <body>
 	<div class="topnav">
@@ -34,10 +34,10 @@
 		
 		<form action="/editemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
 			{% for item in data %}
-			Employee ID:<br>{{ emp_id }}<br><br>
-			First Name:<br> <input type="text" name="first_name" value='{{ item[1] }}'>{{ item[1] }}<br><br>
-			Last Name:<br> <input type="text" name="last_name" value='{{ item[2] }}'>{{ item[2] }}<br><br>
-			Primary Skills:<br> <input type="text" name="pri_skill" list="pri_skill" value='{{ item[3] }}'>{{ item[3] }}
+			Employee ID:<br> <input type="hidden" name="emp_id" value='{{ item[0] }}'> {{ emp_id }}<br><br>
+			First Name:<br> <input type="text" name="first_name" value='{{ item[1] }}'><br><br>
+			Last Name:<br> <input type="text" name="last_name" value='{{ item[2] }}'><br><br>
+			Primary Skills:<br> <input type="text" name="pri_skill" list="pri_skill" value='{{ item[3] }}'>
 			<datalist id="pri_skill">
 				<option value="Cloud Computing">
 				<option value="R Programming">   
@@ -49,7 +49,7 @@
 				<option value="Machine Learning">
 			</datalist>
 			<br><br>
-			Location:<br> <input type="text" name="location" list="location" value = '{{ item[4] }}'>{{ item[4] }}
+			Location:<br> <input type="text" name="location" list="location" value = '{{ item[4] }}'>
 			<datalist id="location">
 				<option value="Johor">
 				<option value="Kedah">  
