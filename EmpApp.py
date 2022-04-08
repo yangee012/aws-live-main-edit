@@ -222,6 +222,22 @@ def deleteEmp():
 
 
 # edit employee
+@app.route("/editemp", methods=['POST', 'GET'])
+def editEmp():
+    emp_id = request.form['emp_id']
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    pri_skill = request.form['pri_skill']
+    location = request.form['location']
+
+    cur = db_conn.cursor()
+    update_emp_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s where emp_id = %s"
+    
+    cur.execute(select_sql, (emp_id))
+    data = cur.fetchall()
+
+    return render_template('HomePage.html', data=data)
+
 
 
 @app.route("/getpayroll", methods=['POST', 'GET'])
