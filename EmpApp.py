@@ -46,6 +46,10 @@ def toPayroll():
 def toDeleteEmp():
     return render_template('DeleteEmp.html')
 
+@app.route("/toeditEmp", methods=['GET', 'POST'])
+def toEditEmp():
+    return render_template('EditEmp.html')
+
 @app.route("/tomanageemp", methods=['GET', 'POST'])
 def toManageEmp():
     return render_template('ManageEmployee.html')
@@ -233,10 +237,11 @@ def editEmp():
     cur = db_conn.cursor()
     update_emp_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s where emp_id = %s"
     
-    cur.execute(select_sql, (emp_id))
-    data = cur.fetchall()
+    cursor.execute(update_emp_sql, (first_name, last_name, pri_skill, location, emp_id))
+    db_conn.commit()
+    cur.close()
 
-    return render_template('HomePage.html', data=data)
+    return render_template('EditEmpOutput.html', emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
 
 

@@ -33,18 +33,11 @@
 		<h1>Employee Information</h1><br><br><br>
 		<body bgcolor="lightgrey">
 			<form>
-				{% for item in data %}
-				<p>Employee ID:<br> {{ item[0] }} </p><br>
-				<p>First Name:<br> {{ item[1] }} </p><br>
-				<p>Last Name:<br> {{ item[2] }} </p><br>
-				<p>Primary Interest:<br> {{ item[3] }} </p><br>
-				<p>Location:<br> {{ item[4] }} </p><br>
-				<!-- <p>Image URL: <br> {{ image_url }} </p><br> -->
-				{% endfor %}
-
-				{% for image in contents %}
-				<img src= {{ image }} style="width: 250px"><br>
-				{% endfor %}
+				<p>Employee ID:<br> {{ emp_id }} </p><br>
+				<p>First Name:<br> {{ first_name }} </p><br>
+				<p>Last Name:<br> {{ last_name }} </p><br>
+				<p>Primary Interest:<br> {{ pri_skill }} </p><br>
+				<p>Location:<br> {{ location }} </p><br>
 			</form>
 		</body>
 	</center>
