@@ -345,7 +345,7 @@ def searchBenefitEmp():
 
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
-        buttonMsg = "BACK TO EMPLOYEE BENEFIT PAGE"
+        buttonMsg = "BACK TO BENEFIT EMPLOYEE PAGE"
         action = "/tosearchbenefitemp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
     
