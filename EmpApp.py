@@ -63,7 +63,9 @@ def addAttend():
 
     if duty_id == "" or emp_id == "" or date == "" or duration == "":
         errorMsg = "Please fill in all the fields"
-        return render_template('ErrorPage.html', errorMsg=errorMsg)
+        buttonMsg = "BACK TO ATTENDANCE PAGE"
+        action = "/toattendance"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     insert_attendance = "INSERT INTO duty VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
