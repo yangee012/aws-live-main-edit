@@ -323,6 +323,12 @@ def getPayroll():
     cur.execute(select_sql, (emp_id))
     data = cur.fetchall()
 
+    if data == "":
+        errorMsg = "The employee ID is not exist"
+        buttonMsg = "BACK TO PAYROLL PAGE"
+        action = "/topayroll"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
     return render_template('PayrollOutput.html', data=data)
 
 
