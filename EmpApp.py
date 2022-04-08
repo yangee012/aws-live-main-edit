@@ -125,7 +125,7 @@ def AddEmp():
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
-        cursor.execute(insert_sql, (emp_id, emp_benefit))
+        cursor.execute(insert_benefit, (emp_id, emp_benefit))
 
         #if statements to update hours_worked and hourly_rate in payroll table
         cursor.execute ("update payroll A, employee B set hourly_rate = 10, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
