@@ -370,7 +370,7 @@ def benefitEmp():
 
     if emp_id == "" or emp_benefit == "":
         errorMsg = "Please fill in all the fields"
-        buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
+        buttonMsg = "BACK TO BENEFIT EMPLOYEE PAGE"
         action = "/tosearchbenefitemp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
@@ -382,7 +382,7 @@ def benefitEmp():
     db_conn.commit()
     cur.close()
 
-    return render_template('EditEmpOutput.html', emp_id=emp_id, emp_benefit=emp_benefit)
+    return render_template('BenefitEmpOutput.html', emp_id=emp_id, emp_benefit=emp_benefit)
 
 
 @app.route("/getpayroll", methods=['POST'])
