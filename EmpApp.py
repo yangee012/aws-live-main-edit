@@ -117,8 +117,8 @@ def AddEmp():
         cursor.execute ("update payroll A, employee B set hourly_rate = 35, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'SQL'")
         cursor.execute ("update payroll A, employee B set hourly_rate = 40, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Machine Learning'")
 
-        #update monthly salary in payroll table
-        cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
+        # #update monthly salary in payroll table
+        # cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
         
         #update monthly salary in payroll table
         cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
@@ -245,8 +245,25 @@ def editEmp():
 
     cur = db_conn.cursor()
     update_emp_sql = "UPDATE employee SET first_name=%s, last_name=%s, pri_skill=%s, location=%s where emp_id = %s"
-    
+
+   
     cur.execute(update_emp_sql, (first_name, last_name, pri_skill, location, emp_id))
+
+    cursor.execute ("update payroll A, employee B set hourly_rate = 10, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 15, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'R Programming'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 20, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'C++ Programming'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 25, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Java Programming'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 30, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Python Programming'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 35, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'SQL'")
+    cursor.execute ("update payroll A, employee B set hourly_rate = 40, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Machine Learning'")
+    
+    #update monthly salary in payroll table
+    cursor.execute ("update payroll set monthly_salary = (hours_worked * hourly_rate)")
+        
+    #insert month
+    update_month_sql = "update payroll set month = MONTHNAME(CURDATE()) where emp_id = (%s)"
+    cursor.execute(update_month_sql, (emp_id))
+    
     db_conn.commit()
     cur.close()
 
