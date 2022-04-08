@@ -34,6 +34,10 @@ def home():
 def toAddEmp():
     return render_template('AddEmp.html')
 
+@app.route("/tofetchemp", methods=['POST'])
+def gofetchEmp():
+    return render_template('GetEmp.html')
+
 @app.route("/toattendance", methods=['GET', 'POST'])
 def toAttend():
     return render_template('Attendance.html')
@@ -167,9 +171,6 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-@app.route("/tofetchemp", methods=['POST'])
-def gofetchEmp():
-    return render_template('GetEmp.html')
 
 
 def show_image(bucket):
@@ -204,6 +205,14 @@ def fetchEmp():
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
+
+    if cur.rowcount == 0:
+        errorMsg = "The employee ID is not exist"
+        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        action = "/tofetchemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
+
     contents = show_image(custombucket)
     data = cur.fetchall()
 
@@ -234,6 +243,14 @@ def deleteEmp():
     cur = db_conn.cursor()
     delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
     cur.execute(delete_emp_sql, (emp_id))
+
+    if cur.rowcount == 0:
+        errorMsg = "The employee ID is not exist"
+        buttonMsg = "BACK TO DELETE EMPLOYEE PAGE"
+        action = "/todeleteEmp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
+
     db_conn.commit()
     # data = cur.fetchall()
 
@@ -260,6 +277,14 @@ def searcheditEmp():
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
     cur.execute(select_sql, (emp_id))
+
+    if cur.rowcount == 0:
+        errorMsg = "The employee ID is not exist"
+        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        action = "/tosearcheditEmp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+    
+
     data = cur.fetchall()
     return render_template('EditEmp.html', emp_id=emp_id, data=data)
 
@@ -321,13 +346,15 @@ def getPayroll():
     select_sql = "SELECT * FROM payroll where emp_id = (%s)"
 
     cur.execute(select_sql, (emp_id))
-    data = cur.fetchall()
 
     if cur.rowcount == 0:
         errorMsg = "The employee ID is not exist"
         buttonMsg = "BACK TO PAYROLL PAGE"
         action = "/topayroll"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
+
+    data = cur.fetchall()
 
     return render_template('PayrollOutput.html', data=data)
 
