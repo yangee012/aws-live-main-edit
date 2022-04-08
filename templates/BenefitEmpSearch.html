@@ -1,0 +1,50 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title>Get Employee Information</title>
+	<!-- <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
+</head>
+<body>
+	<div class="topnav">
+		<a class="home">Employee Database</a>
+		
+		<form action="/" autocomplete="on" method = "GET">
+			<button type="submit">HOME</button>
+		</form>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
+		</form>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">ATTENDANCE</button>
+		</form>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
+		</form>
+		<form action="/tomanageemp" autocomplete="on" method = "POST">
+			<button type="submit">MANAGE EMPLOYEE</button>
+		</form>
+	</div>
+	
+	<center>
+		<br><br><br>
+		<h1 style="color: rgb(0, 124, 143);">SEARCH FOR EMPLOYEE BENEFIT</h1><br><br><br>
+		
+		<body bgcolor="lightgrey">
+			
+			<form action="/searchbenefitemp" autocomplete="on" method="POST">
+				
+				<p style="color: grey">To edit for the employee's benefit, please enter his/her Employee ID.</p><br><br>
+
+				<p>Employee ID:</p><br> <input style="height:22pt; font-size:16pt;" type="number" name="emp_id" autofocus size="40"><br><br><br><br>
+				
+				<div style="padding-right: 45pt;">
+					<button class="fetch-button" type="submit">FETCH INFO</button><br><br><br><br>
+					<button class="reset-button" type="reset">RESET</button>
+				</div>
+			</form>
+		</body>
+	</center>
+</body>
+
+</html>

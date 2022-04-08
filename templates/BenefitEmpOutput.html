@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Searched Employee Information</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}">
+	<!-- <link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css"> -->
+</head>
+
+<body>
+	<div class="topnav">
+		<a class="home">Employee Database</a>
+
+		<form action="/" autocomplete="on" method = "GET">
+			<button type="submit">HOME</button>
+		</form>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
+		</form>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">ATTENDANCE</button>
+		</form>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
+		</form>
+		<form action="/tomanageemp" autocomplete="on" method = "POST">
+			<button type="submit">MANAGE EMPLOYEE</button>
+		</form>
+	</div>
+	
+	<center>
+		<br><br><br>
+		<h1>Employee Information</h1><br><br><br>
+		<body bgcolor="lightgrey">
+			<form>
+				<p>Employee ID:<br> {{ emp_id }} </p><br>
+				<p>Benefit:<br> {{ emp_benefit }} </p><br>
+			</form>
+		</body>
+	</center>
+	<form action="/tosearchbenefitemp" autocomplete="on" method = "GET">
+		<button type="submit">BACK TO EDIT EMPLOYEE</button>
+	</form>
+</body>
+
+</html>

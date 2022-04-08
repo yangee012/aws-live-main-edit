@@ -58,6 +58,10 @@ def toEditEmp():
 def toManageEmp():
     return render_template('ManageEmployee.html')
 
+@app.route("/tosearchbenefitemp", methods=['GET', 'POST'])
+def toBenefitEmp():
+    return render_template('BenefitEmpSearch.html')
+
 @app.route("/addattendance", methods=['POST'])
 def addAttend():
     duty_id = request.form['duty_id']
@@ -105,6 +109,7 @@ def AddEmp():
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
     insert_payroll = "INSERT INTO payroll VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    insert_benefit = "INSERT INTO benefit VALUES (%s, %s)"
     cursor = db_conn.cursor()
     
     hourly_rate = 0
@@ -112,6 +117,7 @@ def AddEmp():
     leave_day = 0
     monthly_salary = 0
     
+    emp_benefit = "No Benefit"
 
     if emp_image_file.filename == "":
         return "Please select a file"
@@ -119,7 +125,8 @@ def AddEmp():
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
         cursor.execute(insert_payroll, (emp_id, first_name, last_name, hourly_rate, hours_worked, leave_day, monthly_salary))
-        
+        cursor.execute(insert_sql, (emp_id, emp_benefit))
+
         #if statements to update hours_worked and hourly_rate in payroll table
         cursor.execute ("update payroll A, employee B set hourly_rate = 10, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'Cloud Computing'")
         cursor.execute ("update payroll A, employee B set hourly_rate = 15, hours_worked = 8 where A.emp_id = B.emp_id and B.pri_skill = 'R Programming'")
@@ -270,7 +277,7 @@ def searcheditEmp():
 
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
-        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
         action = "/tosearcheditEmp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
     
@@ -280,7 +287,7 @@ def searcheditEmp():
 
     if cur.rowcount == 0:
         errorMsg = "The employee ID is not exist"
-        buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
+        buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
         action = "/tosearcheditEmp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
     
@@ -330,6 +337,52 @@ def editEmp():
 
     return render_template('EditEmpOutput.html', emp_id=emp_id, first_name=first_name, last_name=last_name, pri_skill=pri_skill, location=location)
 
+
+# employee benefit
+@app.route("/searchbenefitemp", methods=['POST', 'GET'])
+def searchBenefitEmp():
+    emp_id = request.form['emp_id']
+
+    if emp_id == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO EMPLOYEE BENEFIT PAGE"
+        action = "/tosearchbenefitemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+    
+    cur = db_conn.cursor()
+    select_sql = "SELECT * FROM benefit where emp_id = (%s)"
+    cur.execute(select_sql, (emp_id))
+
+    if cur.rowcount == 0:
+        errorMsg = "The employee ID is not exist"
+        buttonMsg = "BACK TO EMPLOYEE BENEFIT PAGE"
+        action = "/tosearcheditEmp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+    
+
+    data = cur.fetchall()
+    return render_template('BenefitEmp.html', emp_id=emp_id, data=data)
+
+@app.route("/benefitemp", methods=['POST', 'GET'])
+def benefitEmp():
+    emp_id = request.form['emp_id']
+    emp_benefit = request.form['emp_benefit']
+
+    if emp_id == "" or emp_benefit == "":
+        errorMsg = "Please fill in all the fields"
+        buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
+        action = "/tosearchbenefitemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+
+    cur = db_conn.cursor()
+    benefit_emp_sql = "UPDATE benefit SET emp_benefit=%s where emp_id = %s"
+
+   
+    cur.execute(benefit_emp_sql, (emp_benefit, emp_id))
+    db_conn.commit()
+    cur.close()
+
+    return render_template('EditEmpOutput.html', emp_id=emp_id, emp_benefit=emp_benefit)
 
 
 @app.route("/getpayroll", methods=['POST'])

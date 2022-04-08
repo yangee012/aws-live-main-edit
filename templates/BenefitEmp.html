@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Employee Information</title>
+	<!-- <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='EmpDatabase_layout.css') }}"> -->
+	<link rel= "stylesheet" type= "text/css" href="/static/EmpDatabase_layout.css">
+</head>
+<body>
+	<div class="topnav">
+		<a class="home">Employee Database</a>
+
+		<form action="/" autocomplete="on" method = "GET">
+			<button type="submit">HOME</button>
+		</form>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
+		</form>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">ATTENDANCE</button>
+		</form>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
+		</form>
+		<form action="/tomanageemp" autocomplete="on" method = "POST">
+			<button type="submit">MANAGE EMPLOYEE</button>
+		</form>
+	</div>
+
+	
+	<center>
+		<br><br><br><h1>EDIT EMPLOYEE INFORMATION</h1><br><br>
+	</center>
+	<div class="form-part"><br><br>
+		
+		<form action="/benefitemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
+			{% for item in data %}
+			Employee ID:<br> <input type="hidden" name="emp_id" value='{{ item[0] }}'> {{ emp_id }}<br><br>
+			<!-- First Name:<br> <input type="text" name="first_name" value='{{ item[1] }}'><br><br>
+			Last Name:<br> <input type="text" name="last_name" value='{{ item[2] }}'><br><br> -->
+			Benefit:<br> <input type="text" name="emp_benefit" list="emp_benefit" value='{{ item[1] }}'>
+			<datalist id="emp_benefit">
+				<option value="Health Insurance">
+				<option value="Dental Insurance">   
+				<option value="Life Insurance">
+				<option value="Vision Care">  
+				<option value="Retirement Plan">
+				<option value="Fitness Plan">
+				<option value="Personal Leave}">
+			</datalist>
+			<br><br>
+			{% endfor %}
+			<button type="submit">UPDATE DATABASE</button>
+		</form>
+	</div>
+		
+	
+</body>
+
+</html>
