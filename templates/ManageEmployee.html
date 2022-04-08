@@ -12,34 +12,46 @@
 		<form action="/" autocomplete="on" method = "GET">
 			<button type="submit">HOME</button>
 		</form>
-		<form action="/getemp" autocomplete="on" method = "POST">
-			<button type="submit">ALL EMPLOYEE INFORMATION</button>
+		<form action="/getemp" autocomplete="on" method = "GET">
+			<button type="submit">EMPLOYEE INFORMATION</button>
 		</form>
-		<form action="/todeleteEmp" autocomplete="on" method = "POST">
-			<button type="submit">DELETE EMPLOYEE</button>
+		<form action="/toattendance" autocomplete="on" method = "POST">
+			<button type="submit">ATTENDANCE</button>
 		</form>
-		<form action="/tosearcheditEmp" autocomplete="on" method = "GET">
-			<button type="submit">EDIT EMPLOYEE</button>
+		<form action="/topayroll" autocomplete="on" method = "POST">
+			<button type="submit">PAYROLL</button>
 		</form>
-		<form action="/toaddemp" autocomplete="on" method = "POST">
-			<button type="submit">ADD EMPLOYEE</button>
-		</form>
-		<form action="/tofetchemp" autocomplete="on" method = "POST">
-			<button type="submit">SEARCH EMPLOYEE</button>
-		</form>
-		<form action="/tosearchbenefitemp" autocomplete="on" method = "POST">
-			<button type="submit">BENEFIT EMPLOYEE</button>
+		<form action="/tomanageemp" autocomplete="on" method = "POST">
+			<button type="submit">MANAGE EMPLOYEE</button>
 		</form>
 	</div>
 
 	<center>
 		<div bgcolor="lightgrey"><br><br><br>
 			<h1>Manage Employee</h1><br><br><br>
-			<br><br><br>
 		</div>
 	</center>
 
-	
+	<div style="width: fit-content; margin: auto;">
+	<form action="/getemp" autocomplete="on" method = "POST" style="width: fit-content; margin: auto;">
+		<button type="submit">ALL EMPLOYEE INFORMATION</button>
+	</form><br><br><br><br>
+	<form action="/todeleteEmp" autocomplete="on" method = "POST" style="width: fit-content; margin: auto;">
+		<button type="submit">DELETE EMPLOYEE</button>
+	</form><br><br><br><br>
+	<form action="/tosearcheditEmp" autocomplete="on" method = "GET" style="width: fit-content; margin: auto;">
+		<button type="submit">EDIT EMPLOYEE</button>
+	</form><br><br><br><br>
+	<form action="/toaddemp" autocomplete="on" method = "POST" style="width: fit-content; margin: auto;">
+		<button type="submit">ADD EMPLOYEE</button>
+	</form><br><br><br><br>
+	<form action="/tofetchemp" autocomplete="on" method = "POST" style="width: fit-content; margin: auto;">
+		<button type="submit">SEARCH EMPLOYEE</button>
+	</form><br><br><br><br>
+	<form action="/tosearchbenefitemp" autocomplete="on" method = "POST" style="width: fit-content; margin: auto;">
+		<button type="submit">BENEFIT EMPLOYEE</button>
+	</form><br><br><br><br>
+</div>
 </body>
 </head>
 </html>
