@@ -198,7 +198,7 @@ def fetchEmp():
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
         action = "/fetchemp"
-        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action, emp_id=emp_id)
 
     cur = db_conn.cursor()
     select_sql = "SELECT * FROM employee where emp_id = (%s)"
