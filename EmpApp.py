@@ -224,7 +224,7 @@ def deleteEmp():
         return render_template('ErrorPage.html', errorMsg="Delete Employee unsuccess")
 
 # edit employee
-@app.route("/searcheditemp", methods=['POST', 'GET'])
+@app.route("/searcheditEmp", methods=['POST', 'GET'])
 def searcheditEmp()
     emp_id = request.form['emp_id']
     cur = db_conn.cursor()
