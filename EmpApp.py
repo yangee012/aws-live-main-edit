@@ -46,9 +46,9 @@ def toPayroll():
 def toDeleteEmp():
     return render_template('DeleteEmp.html')
 
-@app.route("/toeditEmp", methods=['GET', 'POST'])
+@app.route("/tosearcheditEmp", methods=['GET', 'POST'])
 def toEditEmp():
-    return render_template('EditEmp.html')
+    return render_template('EditEmpSearch.html')
 
 @app.route("/tomanageemp", methods=['GET', 'POST'])
 def toManageEmp():
@@ -223,6 +223,15 @@ def deleteEmp():
     except Exception as e:
         return render_template('ErrorPage.html', errorMsg="Delete Employee unsuccess")
 
+# edit employee
+@app.route("/searcheditemp", methods=['POST', 'GET'])
+def searcheditEmp()
+    emp_id = request.form['emp_id']
+    cur = db_conn.cursor()
+    select_sql = "SELECT * FROM employee where emp_id = (%s)"
+    cur.execute(select_sql, (emp_id))
+    data = cur.fetchall()
+    return render_template('EditEmp.html', emp_id=emp_id, data=data)
 
 
 # edit employee
