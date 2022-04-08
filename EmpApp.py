@@ -96,7 +96,7 @@ def AddEmp():
     if emp_id == "" or first_name == "" or last_name == "" or pri_skill == "" or location == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO ADD EMPLOYEE PAGE"
-        action = "/addemp"
+        action = "/toaddemp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
@@ -198,7 +198,7 @@ def fetchEmp():
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
-        action = "/fetchemp"
+        action = "/tofetchemp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
@@ -228,7 +228,7 @@ def deleteEmp():
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO DELETE EMPLOYEE PAGE"
-        action = "/deleteemp"
+        action = "/todeleteEmp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
@@ -254,7 +254,7 @@ def searcheditEmp():
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO SEARCH EMPLOYEE PAGE"
-        action = "/searcheditEmp"
+        action = "/tosearcheditEmp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
     
     cur = db_conn.cursor()
@@ -276,7 +276,7 @@ def editEmp():
     if emp_id == "" or first_name == "" or last_name == "" or pri_skill == "" or location == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO EDIT EMPLOYEE PAGE"
-        action = "/editemp"
+        action = "/tosearcheditEmp"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
@@ -310,11 +310,11 @@ def editEmp():
 @app.route("/getpayroll", methods=['POST'])
 def getPayroll():
     emp_id = request.form['emp_id']
-    
+
     if emp_id == "":
         errorMsg = "Please fill in all the fields"
         buttonMsg = "BACK TO PAYROLL PAGE"
-        action = "/getpayroll"
+        action = "/topayroll"
         return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     cur = db_conn.cursor()
