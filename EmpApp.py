@@ -252,7 +252,11 @@ def deleteEmp():
 
     cur = db_conn.cursor()
     delete_emp_sql = "DELETE from employee WHERE emp_id = %s"
+    delete_emp_sql1 = "DELETE from payroll WHERE emp_id = %s"
+    delete_emp_sql2 = "DELETE from benefit WHERE emp_id = %s"
     cur.execute(delete_emp_sql, (emp_id))
+    cur.execute(delete_emp_sql1, (emp_id))
+    cur.execute(delete_emp_sql2, (emp_id))
 
     if cur.rowcount == 0:
         errorMsg = "The employee ID is not exist"
