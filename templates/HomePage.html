@@ -27,13 +27,24 @@
 	</div>
 
 	<center>
-		<br><br><br><br>
+		<div bgcolor="lightgrey"><br><br><br>
+			<h1>Welcome To Employee Management System</h1><br><br><br>
+			
+		</div>
+		
 		{% for image in contents %}
 		<img src= {{ image }} style="width: 900px">
 		{% endfor %}
-		<div bgcolor="lightgrey"><br><br><br>
-			<h1>Welcome To Employee Management System</h1><br><br><br>
-			<br><br><br>
+
+		<div class="float-container" style="padding: 20px; width: 60%;">
+			<div class="float-child" style="width: 50%; float: left; padding: 20px;">
+				<p style="font-style: bold; font-weight: bold; font-size: xx-large; width: 60%; font-family: Tahoma, sans-serif;">Manage the entire recruiting cycle</p><br>
+				<p style="font-style: normal; font-size: larger; font-family: Tahoma, sans-serif;">Onboard new employees in no-time and and ensure that they can be productive as soon as possible</p>
+			</div>
+			<div class="float-child" style="width: 50%; float: left; padding: 20px;">
+				<p style="font-style: bold; font-weight: bold; font-size: xx-large; width: 60%; font-family: Tahoma, sans-serif;">Ensure satisfaction and development</p><br>
+				<p style="font-style: normal; font-size: larger; font-family: Tahoma, sans-serif;">Use data to assess and track employee attendance and payroll at one stop</p>
+			</div>
 		</div>
 	</center>
 
