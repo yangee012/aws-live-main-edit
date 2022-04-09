@@ -120,7 +120,10 @@ def AddEmp():
     emp_benefit = "No Benefit"
 
     if emp_image_file.filename == "":
-        return "Please select a file"
+        errorMsg = "Please select a file"
+        buttonMsg = "BACK TO ADD PAGE"
+        action = "/toaddemp"
+        return render_template('ErrorPage.html', errorMsg=errorMsg, buttonMsg=buttonMsg, action=action)
 
     try:
         cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
