@@ -28,7 +28,9 @@
 
 	<center>
 		<br><br><br><br>
-		<img src= "home_page.png" style="width: 800px">
+		{% for image in contents %}
+		<img src= {{ image }} style="width: 250px"><br>
+		{% endfor %}
 		<div bgcolor="lightgrey"><br><br><br>
 			<h1>Welcome To Employee Management System</h1><br><br><br>
 			<br><br><br>
