@@ -240,6 +240,7 @@ def fetchEmp():
 
     contents = show_image(custombucket)
     data = cur.fetchall()
+    cur.close()
 
     return render_template('GetOneEmp.html', emp_id=emp_id, data=data, contents=contents)
 
